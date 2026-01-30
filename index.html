@@ -82,7 +82,7 @@ auth2.onclick = async() => {
   email: e.value,
   token: kood.value,
   type: 'email',
-}); if (aerror) {alert("ERROR\n"+aerror.message)} else if (adata.session) {o.classList.add("peidus"); f.classList.remove("peidus");}
+}); if (aerror) {alert("ERROR\n"+aerror.message)} else if (adata.session) {o.classList.add("peidus"); f.classList.remove("peidus");}}
 lisa.onclick = async () => {
 try {
   const { data:{user} } = await s.auth.getUser()
@@ -106,6 +106,7 @@ load()
 </script>
 </body>
 </html>
+
 
 
 
