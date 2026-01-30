@@ -39,13 +39,15 @@ Hea lambanali ei solva ja on legaalne. Hea lambanaljataja on lugupidav, inimene 
 <button id="auth1">SISENE</button>
 </div>
 <div id="o" class="peidus">
-Teile saadeti emailile link. Palun klõpsake selles kirjas kinnita sisenemiseks.
+Teile saadeti emailile kood. Palun sisestage see siia:
+<input id="kood" placeholder="kood">
+<button id="auth2">JÄTKA</button>
 </div>
 <div id="f" class="peidus">
   <button id="v">Logi välja</button><br>
   <input id="t" placeholder="nali">
   <button id="lisa">LISA</button>
-<br><input id="k_id" type="number" placeholder="id"><button id="kustuta">KUSTUTA</button></div><br><div id="MINU"></div>
+<br><input id="k_id" type="number" placeholder="id"><button id="kustuta">KUSTUTA</button><br><div id="MINU"></div></div>
 <!-- <button  onclick="const elmnt = document.getElementsByTagName('i');for (let i = 0; i < elmnt.length; i++) {elmnt[i].style.visibility = 'visible';}">Näita üksikasju</button> -->
 <script type="module">
 
@@ -70,15 +72,17 @@ if (error) {alert(error.message)} else {if(data.session) { l.classList.add("peid
 auth1.onclick = async () => {
 try {auth1.disabled = true;
 await s.auth.signInWithOtp({
-  email: e.value,
-  options: {
-    emailRedirectTo: 'https://valeNimi4.github.io/lambanaljad/magiclink.html',
-    flowType: 'pkce'
-}})
+  email: e.value})
  l.classList.add("peidus"); o.classList.remove("peidus");} 
 catch (error) {/*await s.auth.signOut();*/
 alert(error.message)}}
 v.onclick = async () => {info = await s.auth.signOut(); if (info.error) {alert(info.error.message)} else {location.reload()}}
+auth2.onclick = async() => {
+  const { adata, aerror } = await supabase.auth.verifyOtp({
+  email: e.value,
+  token: kood.value,
+  type: 'email',
+}); if (aerror) {alert("ERROR\n"+aerror.message)} else if (adata.session) {o.classList.add("peidus"); f.classList.remove("peidus");}
 lisa.onclick = async () => {
 try {
   const { data:{user} } = await s.auth.getUser()
@@ -102,6 +106,7 @@ load()
 </script>
 </body>
 </html>
+
 
 
 
