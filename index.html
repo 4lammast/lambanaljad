@@ -78,7 +78,7 @@ catch (error) {/*await s.auth.signOut();*/
 alert(error.message)}}
 v.onclick = async () => {info = await s.auth.signOut(); if (info.error) {alert(info.error.message)} else {location.reload()}}
 auth2.onclick = async() => {
-  const { adata, aerror } = await supabase.auth.verifyOtp({
+  const { adata, aerror } = await s.auth.verifyOtp({
   email: e.value,
   token: kood.value,
   type: 'email',
@@ -106,6 +106,7 @@ load()
 </script>
 </body>
 </html>
+
 
 
 
