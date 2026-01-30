@@ -93,7 +93,7 @@ try {
   load()
 }catch (err) {
 alert(err.message)}}
-kustuta.onclick = async () => {info = await s.from("lambanaljad").delete().eq("id", k_id.value); if (info.error) {alert(info.error.message)} else {load()}}
+kustuta.onclick = async () => {info = await s.from("lambanaljad_eivaata").delete().eq("id", k_id.value); if (info.error) {alert(info.error.message)} else {load()}}
 const load = async () => {try{
 const kiri = "";
   ({data: info, error: viga} = await s.from("lambanaljad").select("*"));
@@ -107,6 +107,7 @@ load()
 </script>
 </body>
 </html>
+
 
 
 
