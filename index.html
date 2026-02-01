@@ -51,7 +51,8 @@ Teile saadeti emailile kood. Palun sisestage see siia:
   <button id="v">Logi välja</button><br>
   <input id="t" placeholder="nali">
   <button id="lisa">LISA</button>
-<br><input id="k_id" type="number" placeholder="id"><button id="kustuta">KUSTUTA</button><br><div id="MINU"></div></div>
+<br><input id="k_id" type="number" placeholder="id"><button id="kustuta">KUSTUTA</button><br>
+<button onclick="document.querySelectorAll(`i`).forEach(el => {el.style.display = `inline`})">Kuva detailid</button><br><div id="MINU"></div></div>
 <!-- <button  onclick="const elmnt = document.getElementsByTagName('i');for (let i = 0; i < elmnt.length; i++) {elmnt[i].style.visibility = 'visible';}">Näita üksikasju</button> -->
 <script type="module">
 
@@ -109,6 +110,7 @@ load()
 </script>
 </body>
 </html>
+
 
 
 
