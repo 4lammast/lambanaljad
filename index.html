@@ -64,7 +64,7 @@ var viga;
 var info2;
 var error;
 var data;
-const ntdetaile = '<button onclick="document.querySelectorAll(´i´).forEach(el => {el.style.display = `inline`})">Kuva detailid</button><br>';
+const ntdetaile = '<button onclick="document.querySelectorAll(`i`).forEach(el => {el.style.display = `inline`})">Kuva detailid</button><br>';
 ({data, error} = await s.auth.getSession());
 s.auth.onAuthStateChange((event, session) => {
   if (event === 'SIGNED_IN' && session) {
@@ -110,6 +110,7 @@ load()
 </script>
 </body>
 </html>
+
 
 
 
