@@ -13,7 +13,7 @@
 html {
 scroll-behavior: smooth;
 }
-i {color: darkgray;}
+i {color: darkgray; display: none;}
 a, a:link, a:visited {color: blue;}
 .menuu { float: right; margin-right: 20px;  }
 body {font-family: "Comic Relief", system-ui; background-color: lightgray; overflow-y: hidden; font-size: 15px;}
@@ -33,7 +33,7 @@ mine <a href="#kolm">täiustamisse</a> ja logi sisse/tee konto ning saadki nalja
 Hea lambanali ei solva ja on legaalne. Hea lambanaljataja on lugupidav, inimene (mitte robot) ja viisakas<br>Ohutuse huvides on siin ka mingid piirangud, nt nalja pikkus<br>
 Võib koguda neid andmeid: kellaeg, nali, email, supabase kasutaja number. Leht kasutab küpsiseid.
 Nalju kuvatakse nii (kui detailid pole peidetud):<br>
-<i>id</i>Nalja sisu<i>aeg</i></div>
+<i style="display: inline;">id</i>Nalja sisu<i style="display: inline;">aeg</i></div>
 <div id="kaks"><br><br></div>
 <div id="kolm"><br><br>
 Teretulemast täiustamise lehele!<br>
@@ -110,6 +110,7 @@ load()
 </script>
 </body>
 </html>
+
 
 
 
