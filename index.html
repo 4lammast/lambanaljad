@@ -105,16 +105,17 @@ const kustuta = async (k_id) => { if (confirm("Kas tahate tõesti selle NALJA KU
 otsing.oninput = async () => {load()}
 const load = async () => {try{
 const kiri = "";
-  ({data: info, error: viga} = await s.from("lambanaljad").select("*").ilike("text", otsing.value+"%").order('random()'));
+  ({data: info, error: viga} = await s.from("lambanaljad").select("*").ilike("text", otsing.value+"%"));
   ({data: info2, error: viga} = await s.from("lambanaljad_eivaata").select("*").order('random()'));
     if (viga) {throw viga}
-  kaks.innerHTML = '<br><br><input id="otsing"><br>' + ntdetaile + info.map(r=>`<i>${r.id}</i>${r.text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;")}<i>${r.created_at}</i><br><br>`).join("");
-  MINU.innerHTML = info2.map(r=>`<a onclick="kustuta('${r.id}')><i>${r.id}</i>${r.text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;")}<i>${r.created_at}</i></a><br><br>`).join("");
+  kaks.innerHTML = '<br><br><input id="otsing" placeholder="OTSI"><br>' + ntdetaile + info.map(r=>`<i>${r.id}</i>${r.text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;")}<i>${r.created_at}</i><br><br>`).join("");
+  MINU.innerHTML = info2.map(r=>`<a onclick="kustuta('${r.id}')"><i>${r.id}</i>${r.text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;")}<i>${r.created_at}</i></a><br><br>`).join("");
  } catch (error) {alert(error.message)}}
 load()
 </script>
 </body>
 </html>
+
 
 
 
