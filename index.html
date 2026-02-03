@@ -101,7 +101,7 @@ try {
   load()
 }catch (err) {
 alert("ERROR\n"+err.message)}}
-const kustuta= async (k_id) { if (confirm("Kas tahate tõesti selle NALJA KUSTUTADA?") {info = await s.from("lambanaljad_eivaata").delete().eq("id", k_id); if (info.error) {alert("ERROR\n"+info.error.message)} else {load()}}}
+const kustuta = async (k_id) => { if (confirm("Kas tahate tõesti selle NALJA KUSTUTADA?") {info = await s.from("lambanaljad_eivaata").delete().eq("id", k_id); if (info.error) {alert("ERROR\n"+info.error.message)} else {load()}}}
 otsing.oninput = async () => {load()}
 const load = async () => {try{
 const kiri = "";
@@ -115,4 +115,5 @@ load()
 </script>
 </body>
 </html>
+
 
