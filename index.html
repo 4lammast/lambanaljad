@@ -30,13 +30,18 @@ input {width: 35%; font-family: "Comic Relief", system-ui; border-image: linear-
 </span>
 <div id="yks"><br><br>Teretulemast lehele lambanaljad!<br>See leht on väga-väga uus ja selle tegi <a href="https://valeNimi4.github.io">valeNimi4</a><br>(Praegu) pisikese naljakataloogi uurimiseks mine <a href="#kaks">naljadesse</a> <br>Kui tahad nalja lisada
 mine <a href="#kolm">täiustamisse</a> ja logi sisse/tee konto ning saadki nalja lisada.<br>
-Hea lambanali ei solva ja on legaalne. Hea lambanaljataja on lugupidav, inimene (mitte robot) ja viisakas<br>Ohutuse huvides on siin ka mingid piirangud, nt nalja pikkus<br>
-Võib koguda neid andmeid: kellaeg, nali, email, supabase kasutaja number. Leht kasutab küpsiseid.
+Hea lambanali ei solva ja on legaalne. Hea lambanaljataja on lugupidav, inimene (mitte robot) ja viisakas
+<br>
+Limiidid ühele kontole:
+	2 sisselogimist tunnis
+	120 nalja tunnis
+	nalja pikkus: 3-200 tähemärki
+Võib koguda neid andmeid: kellaeg, nali, email, supabase kasutaja number. Leht kasutab küpsiseid.<br>
+Sinu andmeid ei jagata kolmandatele osapooltele.<br>
 Nalju kuvatakse nii (kui detailid pole peidetud):<br>
 <i style="display: inline;">id</i>Nalja sisu<i style="display: inline;">aeg</i></div>
 <div id="kaks"><br><br></div>
 <div id="kolm"><br><br>
-Teretulemast täiustamise lehele!<br>
 <div id="l">
 Konto loomiseks või sisse logimiseks sisestage oma email. Sinu emailile saadetakse ühekordne sisselogimise kood, millega saad sisse logida või konto luua<br>
 <input id="e" placeholder="email">
@@ -50,8 +55,7 @@ Teile saadeti emailile kood. Palun sisestage see siia:
 <div id="f" class="peidus">
   <button id="v">Logi välja</button><br>
   <input id="t" placeholder="nali">
-  <button id="lisa">LISA</button>
-<br><input id="k_id" type="number" placeholder="id"><button id="kustuta">KUSTUTA</button><br>
+  <button id="lisa">LISA</button><br><br>
 <button onclick="document.querySelectorAll(`i`).forEach(el => {el.style.display = `inline`})">Kuva detailid</button><br><div id="MINU"></div></div>
 <!-- <button  onclick="const elmnt = document.getElementsByTagName('i');for (let i = 0; i < elmnt.length; i++) {elmnt[i].style.visibility = 'visible';}">Näita üksikasju</button> -->
 <script type="module">
@@ -97,34 +101,17 @@ try {
   load()
 }catch (err) {
 alert("ERROR\n"+err.message)}}
-kustuta.onclick = async () => {info = await s.from("lambanaljad_eivaata").delete().eq("id", k_id.value); if (info.error) {alert("ERROR\n"+info.error.message)} else {load()}}
+const kustuta= async (k_id) {info = await s.from("lambanaljad_eivaata").delete().eq("id", k_id); if (info.error) {alert("ERROR\n"+info.error.message)} else {load()}}
+otsing.oninput = async () => {load()}
 const load = async () => {try{
 const kiri = "";
-  ({data: info, error: viga} = await s.from("lambanaljad").select("*"));
-  ({data: info2, error: viga} = await s.from("lambanaljad_eivaata").select("*"));
+  ({data: info, error: viga} = await s.from("lambanaljad").select("*").order('random()')).ilike("text", otsing.value);
+  ({data: info2, error: viga} = await s.from("lambanaljad_eivaata").select("*").order('random()'));
     if (viga) {throw viga}
-  kaks.innerHTML = "<br><br>" + ntdetaile + info.map(r=>`<i>${r.id}</i>${r.text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;")}<i>${r.created_at}</i><br>`).join("");
-  MINU.innerHTML = info2.map(r=>`<i>${r.id}</i>${r.text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;")}<i>${r.created_at}</i><br>`).join("");
+  kaks.innerHTML = '<br><br><input id="otsing"><br>' + ntdetaile + info.map(r=>`<i>${r.id}</i>${r.text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;")}<i>${r.created_at}</i><br><br>`).join("");
+  MINU.innerHTML = info2.map(r=>`<a onclick="kustuta('${r.id}')><i>${r.id}</i>${r.text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;")}<i>${r.created_at}</i></a><br><br>`).join("");
  } catch (error) {alert(info.error.message)}}
 load()
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
