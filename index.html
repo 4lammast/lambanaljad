@@ -40,7 +40,7 @@ Võib koguda neid andmeid: kellaeg, nali, email, supabase kasutaja number. Leht 
 Sinu andmeid ei jagata kolmandatele osapooltele.<br>
 Nalju kuvatakse nii (kui detailid pole peidetud):<br>
 <i style="display: inline;">id</i>Nalja sisu<i style="display: inline;">aeg</i></div>
-<div id="kaks"><br><br><input id="otsing"></div>
+<div id="kaks"><br><br><input id="otsing"><p id="naljad"></p></div>
 <div id="kolm"><br><br>
 <div id="l">
 Konto loomiseks või sisse logimiseks sisestage oma email. Sinu emailile saadetakse ühekordne sisselogimise kood, millega saad sisse logida või konto luua<br>
@@ -101,20 +101,21 @@ try {
   load()
 }catch (err) {
 alert("ERROR\n"+err.message)}}
+otsing.oninput = async () => {load()}
 window.kustuta = async (k_id) => { if (confirm("Kas tahate tõesti selle NALJA KUSTUTADA?")) {info = await s.from("lambanaljad_eivaata").delete().eq("id", k_id); if (info.error) {alert("ERROR\n"+info.error.message)} else {load()}}}
 const load = async () => {try{
 const kiri = "";
   ({data: info, error: viga} = await s.from("lambanaljad").select("*").ilike("text", otsing.value+"%"));
   ({data: info2, error: viga} = await s.from("lambanaljad_eivaata").select("*"));
     if (viga) {throw viga}
-  kaks.innerHTML = '<br><br><input id="otsing" placeholder="OTSI"><br>' + ntdetaile + info.map(r=>`<i>${r.id}</i>${r.text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;")}<i>${r.created_at}</i><br><br>`).join("");
+  naljad.innerHTML = ntdetaile + info.map(r=>`<i>${r.id}</i>${r.text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;")}<i>${r.created_at}</i><br><br>`).join("");
   MINU.innerHTML = info2.map(r=>`<a onclick="window.kustuta('${r.id}')"><i>${r.id}</i>${r.text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;")}<i>${r.created_at}</i></a><br><br>`).join("");
- otsing.oninput = async () => {load()}
 } catch (error) {alert(error.message)}}
 load()
 </script>
 </body>
 </html>
+
 
 
 
