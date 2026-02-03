@@ -110,11 +110,12 @@ const kiri = "";
     if (viga) {throw viga}
   kaks.innerHTML = '<br><br><input id="otsing"><br>' + ntdetaile + info.map(r=>`<i>${r.id}</i>${r.text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;")}<i>${r.created_at}</i><br><br>`).join("");
   MINU.innerHTML = info2.map(r=>`<a onclick="kustuta('${r.id}')><i>${r.id}</i>${r.text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;")}<i>${r.created_at}</i></a><br><br>`).join("");
- } catch (error) {alert(info.error.message)}}
+ } catch (error) {alert(error.message)}}
 load()
 </script>
 </body>
 </html>
+
 
 
 
