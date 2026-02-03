@@ -40,7 +40,7 @@ Võib koguda neid andmeid: kellaeg, nali, email, supabase kasutaja number. Leht 
 Sinu andmeid ei jagata kolmandatele osapooltele.<br>
 Nalju kuvatakse nii (kui detailid pole peidetud):<br>
 <i style="display: inline;">id</i>Nalja sisu<i style="display: inline;">aeg</i></div>
-<div id="kaks"><br><br></div>
+<div id="kaks"><br><br><input id="otsing"></div>
 <div id="kolm"><br><br>
 <div id="l">
 Konto loomiseks või sisse logimiseks sisestage oma email. Sinu emailile saadetakse ühekordne sisselogimise kood, millega saad sisse logida või konto luua<br>
@@ -62,7 +62,7 @@ Teile saadeti emailile kood. Palun sisestage see siia:
 
 import { createClient } from "https://esm.sh/@supabase/supabase-js"
 const s = createClient("https://iqrrffhjxakqvlshonbr.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlxcnJmZmhqeGFrcXZsc2hvbmJyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjAzNTAxMzgsImV4cCI6MjA3NTkyNjEzOH0.kqOJ9Ui08Z8dXLGSE3dKXRl436_OKkqli3hbTrQAufA")
-if (!location.hash) {location.hash = "#yks"}
+if (!location.hash) {location.hash = "#kaks"}
 var info;
 var viga;
 var info2;
@@ -115,6 +115,7 @@ load()
 </script>
 </body>
 </html>
+
 
 
 
