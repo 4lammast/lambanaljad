@@ -71,7 +71,7 @@ var error;
 var data;
 const ntdetaile = '<button onclick="document.querySelectorAll(`i`).forEach(el => {el.style.display = `inline`})">KUVA DETAILID</button><br>';
 window.addEventListener("hashchange", function () {document.querySelector("#yks").style.display = "none"; document.querySelector("#kaks").style.display = "none";
-						                           document.querySelector("#kolm").style.display = "none"; document.querySelector(location.hash).style.display = "block" });
+						                           document.querySelector("#kolm").style.display = "none"; document.querySelector(location.hash).style.display = "inline" });
 ({data, error} = await s.auth.getSession());
 s.auth.onAuthStateChange((event, session) => {
   if (event === 'SIGNED_IN' && session) {
@@ -119,6 +119,7 @@ load()
 </script>
 </body>
 </html>
+
 
 
 
