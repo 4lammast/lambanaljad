@@ -109,8 +109,8 @@ otsing.oninput = async () => {load()}
 window.kustuta = async (k_id) => { if (confirm("Kas tahate tõesti selle NALJA KUSTUTADA?")) {info = await s.from("lambanaljad_eivaata").delete().eq("id", k_id); if (info.error) {alert("ERROR\n"+info.error.message)} else {load()}}}
 const load = async () => {try{
 const kiri = "";
-  ({data: info, error: viga} = await s.from("lambanaljad").select("*").ilike("text", otsing.value+"%"));
-  ({data: info2, error: viga} = await s.from("lambanaljad_eivaata").select("*"));
+  ({data: info, error: viga} = await s.from("lambanaljad").select("*").ilike("text", otsing.value+"%").order('random()'));
+  ({data: info2, error: viga} = await s.from("lambanaljad_eivaata").select("*").order('random()'));
     if (viga) {throw viga}
   naljad.innerHTML = ntdetaile + info.map(r=>`<i>${r.id}</i>${r.text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;")}<i>${r.created_at}</i><br><br>`).join("");
   MINU.innerHTML = info2.map(r=>`<a onclick="window.kustuta('${r.id}')"><i>${r.id}</i>${r.text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;")}<i>${r.created_at}</i></a><br><br>`).join("");
@@ -119,6 +119,7 @@ load()
 </script>
 </body>
 </html>
+
 
 
 
