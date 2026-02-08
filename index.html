@@ -41,7 +41,7 @@ Võib koguda neid andmeid: kellaeg, nali, email, supabase kasutaja number. Leht 
 Sinu andmeid ei jagata kolmandatele osapooltele.<br>
 Nalju kuvatakse nii (kui detailid pole peidetud):<br>
 <i style="display: inline;">id</i>Nalja sisu<i style="display: inline;">aeg</i></div>
-<div id="kaks"><input id="otsing" placeholder="OTSI"><br><br><button href="#kolm">LISA NALI</button><br><br><p id="naljad"></p></div>
+<div id="kaks"><input id="otsing" placeholder="OTSI"><br><br><button href="#kolm">LISA NALI</button>  <button onclick="document.querySelectorAll(`i`).forEach(el => {el.style.display = `inline`})">KUVA DETAILID</button><br><br><p id="naljad"></p></div>
 <div id="kolm">
 <div id="l">
 Konto loomiseks või sisse logimiseks sisestage oma email. Sinu emailile saadetakse ühekordne sisselogimise kood, millega saad sisse logida või konto luua<br>
@@ -69,7 +69,6 @@ var viga;
 var info2;
 var error;
 var data;
-const ntdetaile = '<button onclick="document.querySelectorAll(`i`).forEach(el => {el.style.display = `inline`})">KUVA DETAILID</button><br><br>';
 window.addEventListener("hashchange", function () {document.querySelector("#yks").style.display = "none"; document.querySelector("#kaks").style.display = "none";
 						                           document.querySelector("#kolm").style.display = "none"; document.querySelector(location.hash).style.display = "block" });
 ({data, error} = await s.auth.getSession());
@@ -112,13 +111,14 @@ const kiri = "";
   ({data: info, error: viga} = await s.from("lambanaljad").select("*").ilike("text", otsing.value+"%"));
   ({data: info2, error: viga} = await s.from("lambanaljad_eivaata").select("*"));
     if (viga) {throw viga}
-  naljad.innerHTML = ntdetaile + info.map(r=>`<i>${r.id}</i>${r.text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;")}<i>${r.created_at}</i><br><br>`).join("");
+  naljad.innerHTML = info.map(r=>`<i>${r.id}</i>${r.text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;")}<i>${r.created_at}</i><br><br>`).join("");
   MINU.innerHTML = info2.map(r=>`<a onclick="window.kustuta('${r.id}')"><i>${r.id}</i>${r.text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;")}<i>${r.created_at}</i></a><br><br>`).join("");
 } catch (error) {alert(error.message)}}
 load()
 </script>
 </body>
 </html>
+
 
 
 
