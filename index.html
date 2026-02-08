@@ -26,7 +26,7 @@ input {width: 35%; font-family: "Comic Relief", system-ui; border-image: linear-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<div id="uleval"><img src="lambanaljad_logo.svg" id="vaike"> lambanaljad <a class="menuu" href="#kolm">täiusta</a> <a class="menuu" href="#kaks">naljad</a> <a class="menuu" href="#yks">info</a>
+<div id="uleval"><img src="lambanaljad_logo.svg" id="vaike"> LAMBANALJAD <a class="menuu" href="#kolm">TÄIUSTA</a> <a class="menuu" href="#kaks">NALJAD</a> <a class="menuu" href="#yks">INFO</a>
 </div>
 <div id="yks">Teretulemast lehele lambanaljad!<br>See leht on väga-väga uus ja selle tegi <a href="https://valeNimi4.github.io">valeNimi4</a><br>(Praegu) pisikese naljakataloogi uurimiseks mine <a href="#kaks">naljadesse</a> <br>
 Kui tahad nalja lisada
@@ -54,10 +54,10 @@ Teile saadeti emailile kood. Palun sisestage see siia:
 <button id="auth2">JÄTKA</button>
 </div>
 <div id="f" class="peidus">
-  <button id="v">Logi välja</button><br>
+  <button id="v">LOGI VÄLJA</button><br>
   <input id="t" placeholder="nali">
   <button id="lisa">LISA</button><br><br>
-<button onclick="document.querySelectorAll(`i`).forEach(el => {el.style.display = `inline`})">Kuva detailid</button><br><div id="MINU"></div></div>
+<button onclick="document.querySelectorAll(`i`).forEach(el => {el.style.display = `inline`})">KUVA DETAILID</button><br><div id="MINU"></div></div>
 <!-- <button  onclick="const elmnt = document.getElementsByTagName('i');for (let i = 0; i < elmnt.length; i++) {elmnt[i].style.visibility = 'visible';}">Näita üksikasju</button> -->
 <script type="module">
 
@@ -69,7 +69,7 @@ var viga;
 var info2;
 var error;
 var data;
-const ntdetaile = '<button onclick="document.querySelectorAll(`i`).forEach(el => {el.style.display = `inline`})">Kuva detailid</button><br>';
+const ntdetaile = '<button onclick="document.querySelectorAll(`i`).forEach(el => {el.style.display = `inline`})">KUVA DETAILID</button><br>';
 window.addEventListener("hashchange", function () {document.querySelector("#yks").style.display = "none"; document.querySelector("#kaks").style.display = "none";
 						                           document.querySelector("#kolm").style.display = "none"; document.querySelector(location.hash).style.display = "block" });
 ({data, error} = await s.auth.getSession());
@@ -119,6 +119,7 @@ load()
 </script>
 </body>
 </html>
+
 
 
 
