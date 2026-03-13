@@ -26,7 +26,7 @@ input {width: 35%; font-family: "Comic Relief", system-ui; border-image: linear-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<div id="uleval"><img src="lambanaljad_logo.svg" id="vaike"> LAMBANALJAD <a class="menuu" href="#kolm">TÄIUSTA</a> <a class="menuu" href="#kaks">NALJAD</a> <a class="menuu" href="#yks">INFO</a>
+<div id="uleval"><img src="lambanaljad_logo.svg" id="vaike"> LAMBANALJAD <a class="menuu" href="#kolm">TÄIUSTA[3]</a> <a class="menuu" href="#kaks">NALJAD[2]</a> <a class="menuu" href="#yks">INFO[1]</a>
 </div>
 <div id="yks">Teretulemast lehele lambanaljad!<br>See leht on väga-väga uus ja selle tegi <a href="https://valeNimi4.github.io">valeNimi4</a><br>(Praegu) pisikese naljakataloogi uurimiseks mine <a href="#kaks">naljadesse</a> <br>
 Kui tahad nalja lisada
@@ -71,6 +71,21 @@ var error;
 var data;
 window.addEventListener("hashchange", function () {document.querySelector("#yks").style.display = "none"; document.querySelector("#kaks").style.display = "none";
 						                           document.querySelector("#kolm").style.display = "none"; document.querySelector(location.hash).style.display = "block" });
+window.addEventListener("keydown", (e) => {
+  if (e.key === "1") {
+    location.hash = "#yks";
+  }
+});
+window.addEventListener("keydown", (e) => {
+  if (e.key === "2") {
+    location.hash = "#kaks";
+  }
+});
+window.addEventListener("keydown", (e) => {
+  if (e.key === "3") {
+    location.hash = "#kolm";
+  }
+});
 ({data, error} = await s.auth.getSession());
 s.auth.onAuthStateChange((event, session) => {
   if (event === 'SIGNED_IN' && session) {
