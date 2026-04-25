@@ -104,7 +104,7 @@ auth2.onclick = async() => {
 lisa.onclick = async () => {
 try {
   const { data:{user} } = await s.auth.getUser()
-  info = await s.from("lambanaljad_eivaata").insert({ user_id:user.id, text: t.value });
+  info = await s.from("lambanaljad_eivaata").insert({ user_id:user.id, text: t.value + "((B))((I))((U))"});
   if (info.error) {throw info.error}
   t.value = ""
   load()
