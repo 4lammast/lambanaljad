@@ -13,7 +13,6 @@
 html {
 scroll-behavior: smooth;
 }
-i {color: darkgray; display: none;}
 a, a:link, a:visited {color: blue;}
 .menuu { float: right; margin-right: 20px;  }
 body {margin: 0; font-family: "Comic Relief", system-ui; background-color: lightgray; overflow-y: auto; font-size: 15px;}
@@ -45,7 +44,7 @@ Kuvatakse nii: <b>Paks kiri</b> <i>Kaldkiri</i> <u>Allajoonitud kiri</u>
 Nalju kuvatakse nii (kui detailid pole peidetud):<br>
 <i style="display: inline;">id</i>Nalja sisu<i style="display: inline;">aeg</i></div>
 <div id="kaks"><a href="/"><img src="/4lammast.svg" height="25"><br></a><br>
-<input id="otsing" placeholder="OTSI"><br><br><a href="#kolm"><button>LISA NALI</button></a>  <button onclick="document.querySelectorAll(`i`).forEach(el => {el.style.display = `inline`})">KUVA DETAILID</button><br><br><p id="naljad"></p></div>
+<input id="otsing" placeholder="OTSI">   <a href="#kolm"><button>LISA NALI</button></a><br><br>
 <div id="kolm">
 <div id="l">
 Konto loomiseks või sisse logimiseks sisestage oma email. Sinu emailile saadetakse ühekordne sisselogimise kood, millega saad sisse logida või konto luua<br>
@@ -61,7 +60,6 @@ Teile saadeti emailile kood. Palun sisestage see siia:
   <button id="v">LOGI VÄLJA</button><br>
   <input id="t" placeholder="nali">
   <button id="lisa">LISA</button><br><br>
-<button onclick="document.querySelectorAll(`i`).forEach(el => {el.style.display = `inline`})">KUVA DETAILID</button><br><div id="MINU"></div></div>
 <!-- <button  onclick="const elmnt = document.getElementsByTagName('i');for (let i = 0; i < elmnt.length; i++) {elmnt[i].style.visibility = 'visible';}">Näita üksikasju</button> -->
 <script type="module">
 
@@ -130,10 +128,10 @@ const kiri = "";
   ({data: info, error: viga} = await s.from("lambanaljad").select("*").ilike("text", otsing.value+"%"));
   ({data: info2, error: viga} = await s.from("lambanaljad_eivaata").select("*"));
     if (viga) {throw viga}
-  naljad.innerHTML = info.map(r=>`<i>${r.id}</i>${r.text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;").replaceAll("((b))", "<b>").
-							replaceAll("((B))", "</b>").replaceAll("((i))", "<i>").replaceAll("((I))", "</i>").replaceAll("((u))", "<u>").replaceAll("((U))", "</u>")}<i>${r.created_at}</i><br><br>`).join("");
-  MINU.innerHTML = info2.map(r=>`<a onclick="window.kustuta('${r.id}')"><i>${r.id}</i>${r.text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;").replaceAll("((b))", "<b>").
-							replaceAll("((B))", "</b>").replaceAll("((i))", "<i>").replaceAll("((I))", "</i>").replaceAll("((u))", "<u>").replaceAll("((U))", "</u>")}<i>${r.created_at}</i></a><br><br>`).join("");
+  naljad.innerHTML = info.map(r=>`${r.text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;").replaceAll("((b))", "<b>").
+							replaceAll("((B))", "</b>").replaceAll("((i))", "<i>").replaceAll("((I))", "</i>").replaceAll("((u))", "<u>").replaceAll("((U))", "</u>")}<br><br>`).join("");
+  MINU.innerHTML = info2.map(r=>`<a onclick="window.kustuta('${r.id}')">${r.text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;").replaceAll("((b))", "<b>").
+							replaceAll("((B))", "</b>").replaceAll("((i))", "<i>").replaceAll("((I))", "</i>").replaceAll("((u))", "<u>").replaceAll("((U))", "</u>")}</a><br><br>`).join("");
 } catch (error) {alert(error.message)}}
 load()
 </script>
