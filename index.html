@@ -39,6 +39,9 @@ Limiidid ühele kontole:<br>
 	nalja pikkus: 3-200 tähemärki<br>
 Võib koguda neid andmeid: kellaeg, nali, email, supabase kasutaja number. Leht kasutab küpsiseid.<br>
 Sinu andmeid ei jagata kolmandatele osapooltele.<br>
+Lambanaljad toetab nüüd teksti formaatimist. Näiteks<br>
+((b))Paks kiri((B)) ((i))Kaldkiri((I)) ((u))Allajoonitud kiri((U))<br>
+Kuvatakse nii: <b>Paks kiri</b> <i>Kaldkiri</i> <u>Allajoonitud kiri</u>
 Nalju kuvatakse nii (kui detailid pole peidetud):<br>
 <i style="display: inline;">id</i>Nalja sisu<i style="display: inline;">aeg</i></div>
 <div id="kaks"><a href="/"><img src="/4lammast.svg" height="25"><br></a><br>
@@ -127,8 +130,10 @@ const kiri = "";
   ({data: info, error: viga} = await s.from("lambanaljad").select("*").ilike("text", otsing.value+"%"));
   ({data: info2, error: viga} = await s.from("lambanaljad_eivaata").select("*"));
     if (viga) {throw viga}
-  naljad.innerHTML = info.map(r=>`<i>${r.id}</i>${r.text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;")}<i>${r.created_at}</i><br><br>`).join("");
-  MINU.innerHTML = info2.map(r=>`<a onclick="window.kustuta('${r.id}')"><i>${r.id}</i>${r.text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;")}<i>${r.created_at}</i></a><br><br>`).join("");
+  naljad.innerHTML = info.map(r=>`<i>${r.id}</i>${${r.id}</i>${r.text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;").replaceAll("((b))", "<b>").
+							replaceAll("((B))", "</b>").replaceAll("((i))", "<i>").replaceAll("((I))", "</i>").replaceAll("((u))", "<u>").replaceAll("((U))", "</u>")<i>${r.created_at}</i><br><br>`).join("");
+  MINU.innerHTML = info2.map(r=>`<a onclick="window.kustuta('${r.id}')"><i>${r.id}</i>${r.text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#39;").replaceAll("((b))", "<b>").
+							replaceAll("((B))", "</b>").replaceAll("((i))", "<i>").replaceAll("((I))", "</i>").replaceAll("((u))", "<u>").replaceAll("((U))", "</u>")}<i>${r.created_at}</i></a><br><br>`).join("");
 } catch (error) {alert(error.message)}}
 load()
 </script>
